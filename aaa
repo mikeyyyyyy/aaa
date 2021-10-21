@@ -1,1 +1,102 @@
-game.Players.LocalPlayer:Kick("EZ EZ EZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZEZ EZ ALL OF YOUR INFO HAS BEEN SENT TO RETRO BUM ASS NIGGA THANKS FOR THE ROBLOX COOKIE")
+pcall(function()
+    local Players               = game:GetService'Players';
+    local LocalPlayer           = Players.LocalPlayer;
+    local Camera                = workspace.CurrentCamera;
+    local RunService            = game:GetService'RunService';
+    local UIS                   = game:GetService'UserInputService';
+    local NearestObject         = nil;
+    local LastObject            = NearestObject;
+    local LastCheck             = 0;
+    local TrinketAP             = true;
+    local Enabled               = true; 
+    shared.Blacklist            = shared.Blacklist or {};
+     
+    local Clickables = {};
+    local TP = {};
+    local Trinkets = {};
+     
+     
+    for i, v in pairs(workspace:GetDescendants()) do
+        if v.ClassName == 'ClickDetector' and (v.Parent:IsA'BasePart' or v.Parent:IsA'UnionOperation') then
+            table.insert(Clickables, v.Parent);
+            TP[tostring(v.Parent.Position)] = v;
+        end
+    end
+     
+    for i, v in pairs(workspace:GetChildren()) do
+        if (v:IsA'BasePart' or v:IsA'UnionOperation') and TP[tostring(v.Position)] ~= nil then
+            -- Trinkets[#Trinkets + 1] = {v, }
+            table.insert(Trinkets, v);
+        end
+    end
+     
+    if shared.WSDC then shared.WSDC:disconnect(); end
+     
+    shared.WSDC = workspace.DescendantAdded:connect(function(child)
+        if (child:IsA'BasePart' or child:IsA'UnionOperation') and wait(1 / 3) then
+            if child:FindFirstChildOfClass'ClickDetector' then
+                table.insert(Clickables, child);
+                TP[tostring(child.Position)] = child:FindFirstChildOfClass'ClickDetector';
+            end
+            if TP[tostring(child.Position)] ~= nil then
+                table.insert(Trinkets, child);
+            end
+        end
+    end);
+     
+    function GetNearestObject()
+        if #Trinkets < 1 then return false; end
+     
+        local Closest = Trinkets[math.random(#Trinkets)];
+        local Distance = (Camera.CFrame.p - Closest.Position).magnitude;
+     
+        for i, v in pairs(Trinkets) do
+            local LDistance = (Camera.CFrame.p - v.Position).magnitude;
+            if TrinketAP and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild'Head' and (LocalPlayer.Character.Head.Position - v.Position).magnitude <= 15 and TP[tostring(v.Position)] then
+                fireclickdetector(TP[tostring(v.Position)]);
+            end
+            if LDistance < Distance and not shared.Blacklist[v] and v:IsDescendantOf(workspace) then
+                Distance = LDistance;
+                Closest = v;
+            end
+        end
+     
+        return Closest;
+    end
+     
+     
+    RunService:UnbindFromRenderStep'NOL';
+     
+    RunService:BindToRenderStep('NOL', 0, function()
+        if Enabled and tick() - LastCheck > 2.5 / 8 then
+            LastCheck     = tick();
+            NearestObject = GetNearestObject();
+        end
+    end)
+end)
+--
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
+wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4830.54, 549.95, 751.586)
